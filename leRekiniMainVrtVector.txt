@@ -1,0 +1,107 @@
+Čau,
+
+zinu, ka uzliki ierobežojumus uz BN numuriem no ārzemju svešiem numuriem, bet vajadzētu uzlikt ierobežojumus, kas norādīti arī uz publisko 80200400
+rēķiniem, lai uz to piezvanot šajos 3 gadījumos, nevar atstāt balss pastus un atzvanus (epastos, kas aiziet). Iemesls-jo uz tiem mēs reali nevarēsim
+atzvanīt, un klients lieki gaidīs kaut ko...
+
+
+1. Zvani, kas neienāk no LV numuriem (variants: atstāj astoņzīmju numuriem atļauju,kas sākas ar 2 vai 6) 
+2. No 1188 savienotos zvanus, kas uzrādās, kā ienākuši no tel. 67058481; 
+3. Zvanus, kas uzrādās, ka ienāk no anonymous jeb nezināma numura. 
+
+0x wait-time hearing silcene 0
+0x 
+0x # VRT general rule, checks if caller's number belongs to +371******** number range.
+0x  goto step    8             if ani              in     table 13
+0x  disconnect   after announcement none
+0x # VRT rule, check if 
+0x  goto step    8             if ani              in     table 13
+0x
+0x
+xx
+xx
+xx
+xx
+xx
+xx
+xx
+xx
+xx
+xx
+
+
+    Number: 4337             Name: LE_rekini_lv
+Multimedia? n      Attendant Vectoring? n    Meet-me Conf? n           Lock? n
+     Basic? y   EAS? y   G3V4 Enhanced? y   ANI/II-Digits? y   ASAI Routing? y
+ Prompting? y   LAI? y  G3V4 Adv Route? y   CINFO? y   BSR? y   Holidays? y
+ Variables? y   3.0 Enhanced? y
+01 goto step    4             if QF               =      1
+02 goto step    28            if QF               =      2
+03
+04 goto step    67            if QC               =      1
+05 wait-time    1   secs hearing silence
+06 goto step    8             if ani              in     table 13
+07 disconnect   after announcement none
+08 queue-to     skill 1st  pri m
+09
+10 announcement 2426115
+11
+12 collect      1    digits after announcement 2426119  for none
+13 goto step    63            if digits           =      9
+14 collect      1    digits after announcement none     for none
+15 goto step    63            if digits           =      9
+16 collect      1    digits after announcement none     for none
+17 goto step    63            if digits           =      9
+18 collect      1    digits after announcement none     for none
+19 goto step    63            if digits           =      9
+20 disconnect   after announcement 2426117
+21
+22
+23
+24
+25
+26 #    Working hours and callback enabled if QF = 2
+27
+28 goto step    67            if QC               =      1
+29 wait-time    1   secs hearing silence
+30 goto step    32            if ani              in     table 13
+31 disconnect   after announcement none
+32 queue-to     skill 1st  pri m                    
+33
+34 goto step    51            if calls-queued     in skill 1st   pri m  >= 30
+35 goto step    51            if service-hours    not-in table 1
+36
+37 announcement 2426115
+38
+39
+40 #    Callback via altitude - trlavi10
+41 collect      1    digits after announcement 2426116  for none
+42 route-to     number 2402225          with cov n if digit           =  1
+43 collect      1    digits after announcement none     for none
+44 route-to     number 2402225          with cov n if digit           =  1
+45 collect      1    digits after announcement none     for none
+46 route-to     number 2402225          with cov n if digit           =  1
+47 collect      1    digits after announcement none     for none
+48 route-to     number 2402225          with cov n if digit           =  1
+49 disconnect   after announcement 2426117
+50
+51 collect      1    digits after announcement 2426119  for none
+52 goto step    63            if digits           =      9       
+53 collect      1    digits after announcement none     for none
+54 goto step    63            if digits           =      9
+55 collect      1    digits after announcement none     for none
+56 goto step    63            if digits           =      9
+57 collect      1    digits after announcement none     for none
+58 goto step    63            if digits           =      9
+59 disconnect   after announcement 2426117
+60
+61
+62 #    Voice mail to altitude trlavi10 - "IVR_Msg_RecPlay"
+63 announcement 2426118
+64 route-to     number 2402226          with cov n if unconditionally
+65 stop
+66
+67 disconnect   after announcement 2426150
+68 stop
+69
+70                                                                      
