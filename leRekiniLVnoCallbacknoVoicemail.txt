@@ -1,0 +1,13 @@
+Please crete new vector, name it - Latvenergo rekini LV (No callback, no voicemaill)
+
+01 wait-time    1   secs hearing silence
+02
+03 goto step    10            if QC               =      1
+04 
+05 queue-to     skill 1st  pri m
+06
+07 announcement 2426115
+08 goto step    7   if   unconditionally
+09
+10 disconnect   after announcement 2426150
+11 stop

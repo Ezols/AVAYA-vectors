@@ -9,25 +9,19 @@ atzvanīt, un klients lieki gaidīs kaut ko...
 2. No 1188 savienotos zvanus, kas uzrādās, kā ienākuši no tel. 67058481; 
 3. Zvanus, kas uzrādās, ka ienāk no anonymous jeb nezināma numura. 
 
-0x wait-time hearing silcene 0
-0x 
-0x # VRT general rule, checks if caller's number belongs to +371******** number range.
-0x  goto step    8             if ani              in     table 13
-0x  disconnect   after announcement none
-0x # VRT rule, check if 
-0x  goto step    8             if ani              in     table 13
-0x
-0x
-xx
-xx
-xx
-xx
-xx
-xx
-xx
-xx
-xx
-xx
+01 
+02 
+03 # VRT general rule, check if caller's number belongs to +371******** and internal extension number range.
+04  goto step    7             if ani              in     table 13
+05  disconnect   after announcement none
+06 # VRT rule, check if caller's number persist in VRT 14, if so then route to 4337, if not then route to newVector
+07  goto step    10             if ani              in     table 14
+08  goto     vector   newVector
+09  stop 
+10  goto     vector   4337
+11 
+12
+
 
 
     Number: 4337             Name: LE_rekini_lv
