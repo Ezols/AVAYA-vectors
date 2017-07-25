@@ -9,16 +9,16 @@ atzvanīt, un klients lieki gaidīs kaut ko...
 2. No 1188 savienotos zvanus, kas uzrādās, kā ienākuši no tel. 67058481; 
 3. Zvanus, kas uzrādās, ka ienāk no anonymous jeb nezināma numura. 
 
-01 
-02 
-03 # VRT general rule, check if caller's number belongs to +371******** and internal extension number range.
-04  goto step    7             if ani              in     table 13
-05  disconnect   after announcement none
-06 # VRT rule, check if caller's number persist in VRT 14, if so then route to 4337, if not then route to newVector
-07  goto step    10             if ani              in     table 14
-08  goto     vector   newVector
-09  stop 
-10  goto     vector   4337
+01 # Check if caller is 67058481
+02  goto step    5            if ani              in     table newVrtTable
+03 # Check if caller's number belongs to 3712.., 3716.., 3718.., 3719.. number range.
+04  goto step    7             if ani              in     table 14
+05  goto     vector   newVector (Latvenergo rekini (No callback, no voicemaill))
+06  stop
+07  goto     vector   4337
+08  
+09  
+10  
 11 
 12
 

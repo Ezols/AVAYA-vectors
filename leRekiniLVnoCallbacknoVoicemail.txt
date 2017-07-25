@@ -1,13 +1,20 @@
-Please crete new vector, name it - Latvenergo rekini LV (No callback, no voicemaill)
+Please crete new vector, name it - Latvenergo rekini (No callback, no voicemaill)
+Please create newAnnouncement - elektrum.wav attached
 
 01 wait-time    1   secs hearing silence
-02
+02 set          newVariable     = none   ADD   0 
 03 goto step    10            if QC               =      1
 04 
 05 queue-to     skill 1st  pri m
 06
-07 announcement 2426115
-08 goto step    7   if   unconditionally
-09
-10 disconnect   after announcement 2426150
-11 stop
+07 announcement newAnnouncement 
+08 goto step    16  if newVariable >= 5
+09 set          newVariable = newVariable   ADD     1
+10 goto step    7   if   unconditionally
+11
+12
+13 disconnect   after announcement 2426150
+14 stop
+15
+16 disconnect   after announcement none
+17
